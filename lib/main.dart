@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: pageIndex == 0
           ? Events()
           : pageIndex == 1
-              ? EventCreator()
+              ? EventEditor(onSave: (Event ) {  },)
               : Leaderboards(),
       bottomNavigationBar: BottomNavigationBar(
         key: const Key("1"),
