@@ -112,7 +112,7 @@ class _EventEditorState extends State<EventEditor> {
               items: Category.values.map((category) {
                 return DropdownMenuItem<Category>(
                   value: category,
-                  child: Text(category.toString().split('.').last),
+                  child: Text('${category.toString().split('.').last[0].toUpperCase()}${category.toString().split('.').last.substring(1)}'),
                 );
               }).toList(),
               decoration: InputDecoration(labelText: 'Category'),
