@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 var events = [1, 2, 3];
+
+var users = [
+  'https://xsgames.co/randomusers/assets/avatars/male/78.jpg',
+];
+
+final ButtonStyle style =
+    ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
 
 class Events extends StatefulWidget {
   @override
@@ -26,19 +34,39 @@ class _EventsState extends State<Events> {
               subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                TextButton(
-                  child: const Text('BUY TICKETS'),
-                  onPressed: () {/* ... */},
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      MediaQuery.of(context).size.width * 0.075, 0, 0, 0),
+                  child: ElevatedButton(
+                    style: style,
+                    onPressed: () {},
+                    child: Text('Join', style: TextStyle(color: Colors.red)),
+                  ),
                 ),
-                const SizedBox(width: 8),
-                TextButton(
-                  child: const Text('LISTEN'),
-                  onPressed: () {/* ... */},
+                const Expanded(child: SizedBox()),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      0, 0, MediaQuery.of(context).size.width * 0.075, 0),
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(users[0]),
+                    radius: 50,
+                  ),
                 ),
-                const SizedBox(width: 8),
               ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(15.0),
+              child: LinearPercentIndicator(
+                width: MediaQuery.of(context).size.width * 0.85,
+                animation: true,
+                lineHeight: 20.0,
+                animationDuration: 2500,
+                percent: 0.8,
+                center: Text("80.0%"),
+                barRadius: const Radius.circular(16),
+                progressColor: Colors.green,
+              ),
             ),
           ],
         ),
@@ -60,41 +88,6 @@ class _EventsState extends State<Events> {
                   return buildListElement(context);
                 }),
           ),
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton.icon(
-                icon: const Icon(
-                  Icons.star,
-                  color: Colors.white,
-                ),
-                onPressed: () {},
-                label: const Text(
-                  "I'm feeling lucky!",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
-            const Expanded(child: SizedBox()),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton.icon(
-                icon: const Icon(
-                  Icons.local_shipping,
-                  color: Colors.white,
-                ),
-                onPressed: () {},
-                label: const Text(
-                  "Order",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          ],
         ),
       ],
     );
